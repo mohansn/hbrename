@@ -81,8 +81,7 @@ int main(int argc, char **argv)
 	    }
 	}
 #else
-	/* Do nothing
-	   FIXME: Better solution available? */
+#error "We do not have file type defined. Cannot continue, bailing out..."
 #endif
     }
     closedir(dir);
