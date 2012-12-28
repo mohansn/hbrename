@@ -35,10 +35,10 @@ char *new_name (char *argv_ptr)
         return argv_ptr;
     }
 
-    /* Do one pass replacing all spaces with underscores */
+    /* Do one pass replacing all spaces and single quotes with underscores */
     char *saved_argv_ptr = argvptr;
     while (*argvptr) {
-        if(*argvptr == ' ') {
+        if((*argvptr == ' ') || (*argvptr == '\'')) {
             *argvptr = '_';
         }
         argvptr++;
