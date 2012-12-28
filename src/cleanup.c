@@ -62,6 +62,13 @@ int main(int argc, char **argv)
 		ret = stat(newnamebuf, &statbuf);
 		if (-1 == ret) {
 		    ret = rename(dirent->d_name, newnamebuf);
+                    /* Set access and last modified time of renamed file
+                       to current time */
+                    if(-1 == utime(newnamebuf, NULL)) {
+                        if(!quiet) {
+                            perror(strerror(errno));
+                        }
+                    }
 		    if (ret) {
 			perror(strerror(errno));
 		    } else {
