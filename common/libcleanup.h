@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include <errno.h>
+#include <utime.h>
 
 #define NAMELEN 255
 char *new_name(char *argv_ptr);
