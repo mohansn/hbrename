@@ -1,6 +1,9 @@
 #include "../common/libcleanup.h"
 
 extern char *newname;		/* From libcleanup.so */
+#ifdef DEBUG
+extern int EF_DISABLE_BANNER;
+#endif
 
 int min (int a, int b)
 {
@@ -10,6 +13,9 @@ int min (int a, int b)
 int main(int argc, char **argv)
 {
     int opt, quiet = 0;
+#ifdef DEBUG
+    EF_DISABLE_BANNER = 1;
+#endif
     while ((opt = getopt(argc, argv, "q")) != -1) {
         switch (opt) {
         case 'q':
@@ -82,8 +88,7 @@ int main(int argc, char **argv)
 	    }
 	}
 #else
-	/* Do nothing
-	   FIXME: Better solution available? */
+#error "We do not have file type defined. Cannot continue, bailing out..."
 #endif
     }
     closedir(dir);
